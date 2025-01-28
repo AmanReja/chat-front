@@ -85,7 +85,7 @@ function Signup() {
             ) : (
               <img
                 className=" w-[80px] h-[80px] object-cover rounded-full"
-                src={userpng}
+                src={userpng || image}
                 alt="Your Company"
               />
             )}

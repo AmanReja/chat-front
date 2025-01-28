@@ -1,22 +1,27 @@
-import React from "react";
-import Getalluser from "../Context/Getalluser";
+import { React, useEffect } from "react";
+
 import User from "./User";
 import "./Message.css";
+import { useChatstore } from "../Statemanagement/useChatstore";
+import Skeleton from "./Skeleton";
 
 function Alluser() {
-  const [alluser, load] = Getalluser();
+  const { users, isUsersloading, getUsers } = useChatstore();
 
-  if (load) {
-    return <div>Loading...</div>;
-  }
+  // if (isUsersloading) {
+  //   return <Skeleton></Skeleton>;
+  // }
 
-  if (!alluser.length) {
-    return <div>No users found.</div>;
-  }
+  // if (!users.length) {
+  //   return <div>No users found.</div>;
+  // }
+  useEffect(() => {
+    getUsers();
+  }, [getUsers]);
 
   return (
     <div className=" container no-scrollbar w-[520px] h-[84vh] overflow-y-auto box-border relative pl-[55px]">
-      {alluser.map((user, index) => (
+      {users.map((user, index) => (
         <User key={index} user={user} />
       ))}
     </div>

@@ -6,7 +6,7 @@ import cookies from "js-cookie";
 import { io } from "socket.io-client";
 import Customtoast from "../components/Customtoast";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://chat-backend-1-ukrx.onrender.com";
 
 export const useAuthstore = create((set, get) => ({
   authUser: null,

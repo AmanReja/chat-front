@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import userpng from "../assets/images/user.png";
-import useConversation from "../Statemanagement/useConversation";
-import { useSocketcontext } from "../Context/SocketContext";
+
 import { useChatstore } from "../Statemanagement/useChatstore";
 import Skeleton from "./Skeleton";
 import { useAuthstore } from "../Statemanagement/useAuthstore";

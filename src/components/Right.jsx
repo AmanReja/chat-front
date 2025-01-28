@@ -1,6 +1,6 @@
 import { React, useEffect, useRef } from "react";
 import Message from "./Message";
-import useConversation from "../Statemanagement/useConversation";
+
 import Sendinput from "./Sendinput";
 import { useChatstore } from "../Statemanagement/useChatstore";
 import { useAuthstore } from "../Statemanagement/useAuthstore";
@@ -8,7 +8,6 @@ import "./Message.css";
 
 function Right() {
   const { onlineUsers } = useAuthstore();
-  const { selectedConversation } = useConversation();
 
   const {
     getUsers,
