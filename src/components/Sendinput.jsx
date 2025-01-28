@@ -1,8 +1,5 @@
 import { React, useState } from "react";
-import useConversation from "../Statemanagement/useConversation.js";
-import useGetusermessage from "../Context/useGetusermessage.js";
-import { useSocketcontext } from "../Context/SocketContext.jsx";
-import useGetsocketmessage from "../Context/useGetsocketmessage.jsx";
+
 import { useChatstore } from "../Statemanagement/useChatstore.js";
 
 function Sendinput() {
@@ -10,8 +7,6 @@ function Sendinput() {
   // const { selectedConversation } = useConversation();
   // const { getmessages, setLoad } = useGetusermessage();
   const [message, setMessage] = useState("");
-
-  const { socket } = useSocketcontext();
 
   const handelsend = async (e) => {
     e.preventDefault();

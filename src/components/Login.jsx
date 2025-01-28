@@ -4,7 +4,7 @@ import profile from "../assets/images/profile.jpg";
 import userpng from "../assets/images/user.png";
 import Swal from "sweetalert2";
 import toast, { Toaster } from "react-hot-toast";
-import { useAuth } from "../Context/authProvider";
+
 import { useAuthstore } from "../Statemanagement/useAuthstore";
 
 function Login() {
@@ -13,7 +13,7 @@ function Login() {
   const [Pass, setPass] = useState("");
   const [fullname, setFullname] = useState("");
   const [user, setUser] = useState([]);
-  const { authUser, setAuthUser } = useAuth();
+
   const { login, checkAuth } = useAuthstore();
 
   const userdata = localStorage.getItem("userid");

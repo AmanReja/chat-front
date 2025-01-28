@@ -6,8 +6,8 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useAuthstore } from "../Statemanagement/useAuthstore.js";
 import "../App.css";
-import { useAuth } from "../Context/authProvider";
 
 function Signup() {
   const navigate = useNavigate();
@@ -17,9 +17,7 @@ function Signup() {
   const [image, setImage] = useState("");
   const [imageid, setImageid] = useState("");
   const [load, setLoad] = useState(false);
-  const { authUser, setAuthUser } = useAuth();
-
-  console.log(21, authUser);
+  const { signUp } = useAuthstore();
 
   const handleImageUpload = async (e) => {
     setLoad(true);
@@ -65,28 +63,7 @@ function Signup() {
       userimage: image,
       userimageid: imageid
     };
-    const requestoptions = {
-      method: "POST",
-      headers: { "content-Type": "application/json" },
-      body: JSON.stringify(new_user)
-    };
-    const response = await fetch(`/api/auth/signup`, requestoptions);
-    const data = await response.json();
-    console.log(27, data);
-    setAuthUser(data);
-    if (response.status == 201) {
-      toast.success("You have successfully signup");
-      window.location.reload();
-      setEmail("");
-      setPass("");
-      navigate("/");
-    } else if (response.status == 400) {
-      Swal.fire({
-        title: "user already exeist",
-        text: "sign up failed",
-        icon: "warning"
-      });
-    }
+    signUp(new_user, navigate);
   };
 
   return (
