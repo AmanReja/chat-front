@@ -4,11 +4,13 @@ import "./App.css";
 import { Outlet } from "react-router-dom";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 import Content from "./components/Content";
-
+import { useAuth } from "./Context/authProvider";
 import { Toaster } from "react-hot-toast";
 import { useAuthstore } from "./Statemanagement/useAuthstore";
+import Customtoast from "./components/Customtoast";
 
 function App() {
   const { checkAuth, isCheckingauth } = useAuthstore();

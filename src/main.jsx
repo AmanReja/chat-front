@@ -12,6 +12,8 @@ import {
   RouterProvider
 } from "react-router-dom";
 import Content from "./components/Content.jsx";
+import { AuthProvider } from "./Context/authProvider.jsx";
+import { SocketProvider } from "./Context/SocketContext.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +27,10 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <SocketProvider>
+        <RouterProvider router={router} />
+      </SocketProvider>
+    </AuthProvider>
   </StrictMode>
 );
