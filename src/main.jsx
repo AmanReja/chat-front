@@ -12,7 +12,7 @@ import {
   RouterProvider
 } from "react-router-dom";
 import Content from "./components/Content.jsx";
-import { AuthProvider } from "./Context/authProvider.jsx";
+
 import { SocketProvider } from "./Context/SocketContext.jsx";
 
 const router = createBrowserRouter(
@@ -27,10 +27,8 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <SocketProvider>
-        <RouterProvider router={router} />
-      </SocketProvider>
-    </AuthProvider>
+    <SocketProvider>
+      <RouterProvider router={router} />
+    </SocketProvider>
   </StrictMode>
 );
