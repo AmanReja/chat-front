@@ -13,8 +13,6 @@ import {
 } from "react-router-dom";
 import Content from "./components/Content.jsx";
 
-import { SocketProvider } from "./Context/SocketContext.jsx";
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<App />}>
@@ -27,8 +25,6 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <SocketProvider>
-      <RouterProvider router={router} />
-    </SocketProvider>
+    <RouterProvider router={router} />
   </StrictMode>
 );
