@@ -3,14 +3,14 @@ import react from "@vitejs/plugin-react";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()]
-  // server: {
-  //   port: 5173,
-  //   proxy: {
-  //     "/api": {
-  //       target: `https://chat-backend-1-ukrx.onrender.com`,
-  //       changeOrigin: true
-  //     }
-  //   }
-  // }
+  plugins: [react()],
+  server: {
+    port: 5173,
+    proxy: {
+      "/api": {
+        target: `https://chat-backend-1-ukrx.onrender.com`,
+        changeOrigin: true
+      }
+    }
+  }
 });

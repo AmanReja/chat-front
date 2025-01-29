@@ -8,7 +8,6 @@ import sound from "../assets/sound/noti.mp3";
 import { useAuthstore } from "./useAuthstore";
 import { io } from "socket.io-client";
 import Customtoast from "../components/Customtoast";
-const BASE_URL = "https://chat-backend-1-ukrx.onrender.com";
 
 export const useChatstore = create((set, get) => ({
   messages: [],
@@ -23,8 +22,8 @@ export const useChatstore = create((set, get) => ({
 
     try {
       const token = cookies.get("jwt");
-      const response = await axios.get(`${BASE_URL}/user/getuserprofile`, {
-        // withCredentials: true,
+      const response = await axios.get(`/api/user/getuserprofile`, {
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -42,7 +41,7 @@ export const useChatstore = create((set, get) => ({
   getMessages: async (userid) => {
     set({ isMessagesloading: true, messages: [] }); // Clear messages first
     try {
-      const response = await axios.get(`${BASE_URL}/message/get/${userid}`);
+      const response = await axios.get(`/api/message/get/${userid}`);
       set({ messages: response.data.messages });
       console.log("messages", response.data.messages);
     } catch (error) {
@@ -64,7 +63,7 @@ export const useChatstore = create((set, get) => ({
     try {
       // Send the message to the server
       const res = await axios.post(
-        `${BASE_URL}/message/send/${selectedUser._id}`,
+        `/api/message/send/${selectedUser._id}`,
         messageData
       );
 
