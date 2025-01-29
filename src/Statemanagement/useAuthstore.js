@@ -17,7 +17,7 @@ export const useAuthstore = create((set, get) => ({
   socket: null,
   checkAuth: async () => {
     try {
-      const res = await axios.get("/api/auth/checkauth");
+      const res = await axios.get(`${BASE_URL}/auth/checkauth`);
 
       set({ authUser: res.data });
       get().connectSocket();
@@ -49,7 +49,7 @@ export const useAuthstore = create((set, get) => ({
   signUp: async (data, navigate) => {
     set({ isSigningUp: true });
     try {
-      const res = await axios.post(`/api/auth/signup`, data);
+      const res = await axios.post(`${BASE_URL}/auth/signup`, data);
       set({ authUser: res.data });
       if (res.data !== null) {
         toast.success("Account created successfully");
@@ -69,7 +69,7 @@ export const useAuthstore = create((set, get) => ({
   login: async (data, navigate) => {
     set({ isLoggingIn: true });
     try {
-      const res = await axios.post(`/api/auth/login`, data);
+      const res = await axios.post(`${BASE_URL}/auth/login`, data);
       console.log(22, res);
 
       const log = res.data;
@@ -96,7 +96,7 @@ export const useAuthstore = create((set, get) => ({
 
   logout: async (navigate) => {
     try {
-      await axios.post(`/api/auth/logout`);
+      await axios.post(`${BASE_URL}/auth/logout`);
       set({ authUser: null });
       toast.success("Logged out successfully");
 
