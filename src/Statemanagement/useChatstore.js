@@ -24,7 +24,7 @@ export const useChatstore = create((set, get) => ({
     try {
       const token = cookies.get("jwt");
       const response = await axios.get(`${BASE_URL}/user/getuserprofile`, {
-        withCredentials: true,
+        // withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`
         }
