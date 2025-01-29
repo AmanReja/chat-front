@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5173,
+    port: "https://chat-front-i6td.vercel.app",
     proxy: {
       "/api": {
         target: `https://chat-backend-1-ukrx.onrender.com`,
