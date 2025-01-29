@@ -1,6 +1,7 @@
 import React from "react";
 import toast from "react-hot-toast";
 import { useAuthstore } from "../Statemanagement/useAuthstore";
+import userpng from "../assets/images/user.png";
 
 function Customtoast(user) {
   //   const { authUser } = useAuthstore();
@@ -15,7 +16,7 @@ function Customtoast(user) {
           <div className="flex-shrink-0 pt-0.5">
             <img
               className="h-10 w-10 rounded-full"
-              src={user.userimage || "https://via.placeholder.com/40"}
+              src={user.userimage || userpng}
               alt="User Avatar"
             />
           </div>
