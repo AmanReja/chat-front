@@ -26,10 +26,10 @@ export const useChatstore = create((set, get) => ({
       console.log("token is", token);
 
       const response = await axios.get(`${BASE_URL}/user/getuserprofile`, {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+        // withCredentials: true,
+        // headers: {
+        //   Authorization: `Bearer ${token}`
+        // }
       });
       set({ users: response.data });
       console.log("allU", response.data);
