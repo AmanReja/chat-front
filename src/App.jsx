@@ -3,7 +3,7 @@ import Signup from "./components/Signup";
 import "./App.css";
 import { Outlet } from "react-router-dom";
 import Login from "./components/Login";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 
 import Content from "./components/Content";
 
@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       <Toaster></Toaster>
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar> */}
       <Outlet>
         <Signup></Signup>
         <Login></Login>

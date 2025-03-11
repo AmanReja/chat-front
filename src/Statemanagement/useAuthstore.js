@@ -2,12 +2,11 @@ import { create } from "zustand";
 import toast from "react-hot-toast";
 import React from "react";
 import axios from "axios";
-import cookies from "js-cookie";
 import { io } from "socket.io-client";
 import Customtoast from "../components/Customtoast";
 
-// const BASE_URL = "http://localhost:3000";
-const BASE_URL = "https://chat-backend-1-ukrx.onrender.com";
+// Use the dynamic API URL
+const BASE_URL = process.env.API_URL || "http://localhost:3000"; // Default to local server in dev
 
 export const useAuthstore = create((set, get) => ({
   authUser: null,
@@ -16,10 +15,10 @@ export const useAuthstore = create((set, get) => ({
   isCheckingauth: false,
   onlineUsers: [],
   socket: null,
+
   checkAuth: async () => {
     try {
       const res = await axios.get(`${BASE_URL}/auth/checkauth`);
-
       set({ authUser: res.data });
       get().connectSocket();
       console.log("authchecker", res.data);
@@ -30,22 +29,6 @@ export const useAuthstore = create((set, get) => ({
       set({ isCheckingauth: false });
     }
   },
-  // deleteuser: async (userid, navigate) => {
-  //   try {
-  //     const res = await axios.delete(`/api/user/deleteuser/${userid._id}`);
-
-  //     console.log("messages", res.data.messages);
-  //     if (res.data !== null) {
-  //       toast.success("user has been deleted");
-  //       set({ authUser: null });
-  //       navigate("/");
-  //     } else {
-  //       toast.error("unable to delete user");
-  //     }
-  //   } catch (error) {
-  //     console.log("error in getmessages", error);
-  //   }
-  // },
 
   signUp: async (data, navigate) => {
     set({ isSigningUp: true });
@@ -58,7 +41,6 @@ export const useAuthstore = create((set, get) => ({
       } else {
         toast.error("Account creation failed");
       }
-
       get().connectSocket();
     } catch (error) {
       console.log("auth signup", error);
@@ -71,12 +53,9 @@ export const useAuthstore = create((set, get) => ({
     set({ isLoggingIn: true });
     try {
       const res = await axios.post(`${BASE_URL}/auth/login`, data);
-      console.log(22, res);
-
       const log = res.data;
       if (log._id !== null) {
         Customtoast(res.data);
-
         navigate("/content");
       }
 
@@ -86,7 +65,6 @@ export const useAuthstore = create((set, get) => ({
       localStorage.setItem("userData", JSON.stringify(res.data));
 
       get().connectSocket();
-      // Use navigate instead of window.location.href
     } catch (error) {
       toast.error("login failed");
       console.log("auth login", error);
@@ -126,6 +104,7 @@ export const useAuthstore = create((set, get) => ({
       set({ onlineUsers: users });
     });
   },
+
   disconnectSocket: () => {
     const { socket } = get();
     if (socket?.connected) {

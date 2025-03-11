@@ -23,10 +23,8 @@ export const useChatstore = create((set, get) => ({
 
     try {
       const token = cookies.get("jwt");
-      console.log("token is", token);
-
       const response = await axios.get(`${BASE_URL}/user/getuserprofile`, {
-        // withCredentials: true,
+        withCredentials: true
         // headers: {
         //   Authorization: `Bearer ${token}`
         // }
@@ -44,7 +42,7 @@ export const useChatstore = create((set, get) => ({
   getMessages: async (userid) => {
     set({ isMessagesloading: true, messages: [] }); // Clear messages first
     try {
-      const response = await axios.get(`${BASE_URL}/message/get/${userid}`);
+      const response = await axios.get(`/api/message/get/${userid}`);
       set({ messages: response.data.messages });
       console.log("messages", response.data.messages);
     } catch (error) {
@@ -66,7 +64,7 @@ export const useChatstore = create((set, get) => ({
     try {
       // Send the message to the server
       const res = await axios.post(
-        `${BASE_URL}/message/send/${selectedUser._id}`,
+        `/api/message/send/${selectedUser._id}`,
         messageData
       );
 
