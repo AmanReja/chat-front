@@ -21,7 +21,6 @@ function User({ user }) {
   useEffect(() => {
     getUsers();
   }, [getUsers]);
-  console.log(users);
 
   if (isUsersloading) {
     return <Skeleton></Skeleton>;

@@ -8,7 +8,6 @@ import sound from "../assets/sound/noti.mp3";
 import { useAuthstore } from "./useAuthstore";
 import { io } from "socket.io-client";
 import Customtoast from "../components/Customtoast";
-const BASE_URL = "https://chat-backend-1-ukrx.onrender.com";
 
 export const useChatstore = create((set, get) => ({
   messages: [],
@@ -23,11 +22,11 @@ export const useChatstore = create((set, get) => ({
 
     try {
       const token = cookies.get("jwt");
-      const response = await axios.get(`${BASE_URL}/user/getuserprofile`, {
-        withCredentials: true
-        // headers: {
-        //   Authorization: `Bearer ${token}`
-        // }
+      const response = await axios.get(`/api/user/getuserprofile`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
       set({ users: response.data });
       console.log("allU", response.data);
